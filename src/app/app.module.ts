@@ -9,6 +9,8 @@ import { IngameComponent } from './ingame/ingame.component';
 import { MaterialModule } from '@angular/material';
 import { AppRouteModule } from './app-route/app-route.module';
 
+import 'hammerjs';
+
 @NgModule({
   declarations: [
     AppComponent,
