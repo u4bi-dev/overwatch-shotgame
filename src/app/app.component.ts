@@ -9,5 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
-  
+
+  constructor() {
+        this.game = new Phaser.Game(300, 400, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
+    }
+
+    game: Phaser.Game;
+
+    preload() {
+
+    }
+
+    create() {
+
+    }
 }
