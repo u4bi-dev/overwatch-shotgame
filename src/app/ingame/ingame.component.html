@@ -1,43 +1,11 @@
-<md-sidenav-layout [class.m2app-dark]="isDarkTheme">
+현재 기록 - {{progress}}%
+<md-progress-bar
+    class="app-progress"
+    color="accent"
+    mode="determinate"
+    [value]="progress"
+    aria-label="accrue timebar">
+</md-progress-bar>
 
-  <md-sidenav #sidenav mode="side" class="app-sidenav">
-    <md-list>
-      <md-list-item> 메인으로 가기 </md-list-item>
-      <md-list-item> 게임 진행 </md-list-item>
-      <md-list-item> 랭킹/전적 </md-list-item>
-      <md-list-item> 내정보 설정 </md-list-item>
-    </md-list>
-  </md-sidenav>
-
-  <md-toolbar color="primary">
-    <button class="app-icon-button" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu">menu</i>
-    </button>
-
-    오버워치 샷게임
-
-    <span class="app-toolbar-filler"></span>
-    <button md-button (click)="isDarkTheme = !isDarkTheme">테마 변경</button>
-  </md-toolbar>
-
-  <div class="app-content">
-
-    현재 기록 - {{progress}}%
-    <md-progress-bar
-        class="app-progress"
-        color="accent"
-        mode="determinate"
-        [value]="progress"
-        aria-label="accrue timebar">
-    </md-progress-bar>
-    
-    <div id="ingame"></div>
-    <app-info></app-info>
-
-  </div>
-
-</md-sidenav-layout>
-
-<span class="app-action" [class.m2app-dark]="isDarkTheme">
-  <button md-fab><md-icon>dock</md-icon></button>
-</span>
+<div id="ingame"></div>
+<app-info></app-info>
