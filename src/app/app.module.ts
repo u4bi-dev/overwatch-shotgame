@@ -13,6 +13,7 @@ import 'hammerjs';
 import { InfoComponent } from './info/info.component';
 import { MainComponent } from './main/main.component';
 import { RankComponent } from './rank/rank.component';
+import { ConfigComponent } from './config/config.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RankComponent } from './rank/rank.component';
     IngameComponent,
     InfoComponent,
     MainComponent,
-    RankComponent
+    RankComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
