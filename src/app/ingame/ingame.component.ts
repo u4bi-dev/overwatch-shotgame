@@ -8,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IngameComponent implements OnInit {
 
+  progress: number = 0;
+
   constructor() {
+      setInterval(() => {
+          this.progress += 1 % 100;
+      }, 1000);
+
       this.game = new Phaser.Game(1280, 850, Phaser.AUTO, 'ingame', {
           preload: this.preload,
           create: this.create,
