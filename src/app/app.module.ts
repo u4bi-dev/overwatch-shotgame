@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { IngameComponent } from './ingame/ingame.component';
 
+import { MaterialModule } from '@angular/material';
 import { AppRouteModule } from './app-route/app-route.module';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { AppRouteModule } from './app-route/app-route.module';
     BrowserModule,
     FormsModule,
     HttpModule,
+    MaterialModule.forRoot(),
     AppRouteModule
   ],
   providers: [],
