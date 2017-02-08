@@ -1,3 +1,11 @@
+
+@media only screen and (min-width: 786px) {
+  #ingame{
+    width: 65%;
+    height: 65%;
+  }
+}
+
 .app-progress {
   height: 10px;
   margin-top: 20px;
