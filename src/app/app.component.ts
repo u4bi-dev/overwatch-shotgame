@@ -1,4 +1,4 @@
-/// <reference path='../phaser.d.ts'/>
+/// <reference path='../lib/phaser.d.ts'/>
 
 import { Component } from '@angular/core';
 
@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
 
   constructor() {
         this.game = new Phaser.Game(300, 400, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
