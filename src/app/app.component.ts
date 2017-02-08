@@ -1,5 +1,3 @@
-/// <reference path='../lib/phaser.d.ts'/>
-
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,18 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  constructor() {
-        this.game = new Phaser.Game(300, 400, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
-    }
-
-    game: Phaser.Game;
-
-    preload() {
-
-    }
-
-    create() {
-
-    }
 }

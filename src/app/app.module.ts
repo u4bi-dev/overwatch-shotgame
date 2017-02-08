@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { IngameComponent } from './ingame/ingame.component';
 
+import { AppRouteModule } from './app-route/app-route.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +16,8 @@ import { IngameComponent } from './ingame/ingame.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRouteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
