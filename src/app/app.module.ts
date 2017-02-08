@@ -12,13 +12,15 @@ import { AppRouteModule } from './app-route/app-route.module';
 import 'hammerjs';
 import { InfoComponent } from './info/info.component';
 import { MainComponent } from './main/main.component';
+import { RankComponent } from './rank/rank.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IngameComponent,
     InfoComponent,
-    MainComponent
+    MainComponent,
+    RankComponent
   ],
   imports: [
     BrowserModule,
