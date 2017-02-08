@@ -10,11 +10,13 @@ import { MaterialModule } from '@angular/material';
 import { AppRouteModule } from './app-route/app-route.module';
 
 import 'hammerjs';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IngameComponent
+    IngameComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
