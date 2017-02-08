@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class IngameComponent implements OnInit {
 
   constructor() {
-      this.game = new Phaser.Game(300, 400, Phaser.AUTO, 'ingame', {
+      this.game = new Phaser.Game(1280, 850, Phaser.AUTO, 'ingame', {
           preload: this.preload,
           create: this.create,
           update: this.update
@@ -23,7 +23,9 @@ export class IngameComponent implements OnInit {
   game: Phaser.Game;
 
   preload() {
-
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.scale.pageAlignHorizontally = true;
+    this.game.scale.pageAlignVertically = true;
   }
 
   create() {
