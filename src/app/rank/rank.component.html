@@ -1,10 +1,25 @@
 <md-list>
   <h3 md-subheader>최고점 랭킹 10인</h3>
   <md-list-item *ngFor="let user of users">
-    <md-icon md-list-avatar>person</md-icon>
+    <button md-icon-button [mdMenuTriggerFor]="rankDetail">
+      <md-icon md-list-avatar>person</md-icon>
+    </button>
+
     <span>{{user.name}}</span>
     <span> {{user.score}}초 갱신</span>
     <span> {{user.kill}}킬</span>
   </md-list-item>
   <md-divider></md-divider>
-  <md-list>
+  <h6 md-subheader>아바타를 클릭하시면 해당 유저의 정보를 확인할 수 있습니다.</h6>
+<md-list>
+
+<md-menu #rankDetail="mdMenu">
+  <button md-menu-item>
+    <md-icon>find_in_page</md-icon>
+    <span>정보</span>
+  </button>
+  <button md-menu-item>
+    <md-icon>thumb_up</md-icon>
+    <span>칭찬</span>
+  </button>
+</md-menu>
