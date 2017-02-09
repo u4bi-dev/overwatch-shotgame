@@ -1,3 +1,48 @@
-<p>
-  config works!
-</p>
+<md-card class="app-input-section">
+
+  <md-input #nickname placeholder="이름" maxlength="20">
+    <span md-prefix>
+      <i class="material-icons app-input-icon">person</i>
+    </span>
+    <md-hint align="end">
+      {{nickname.characterCount}} / 20
+    </md-hint>
+  </md-input>
+
+  <md-input #nickname placeholder="소개말" maxlength="50">
+    <span md-prefix>
+      <i class="material-icons app-input-icon">extension</i>
+    </span>
+    <md-hint align="end">
+      {{nickname.characterCount}} / 50
+    </md-hint>
+  </md-input>
+
+</md-card>
+
+<md-card>
+  <md-checkbox [checked]="true">전적 조회시 이메일 공개</md-checkbox>
+</md-card>
+
+<md-card>
+  <md-tab-group>
+    <md-tab label="전적 정보">
+      <md-list>
+          <md-list-item>
+            <h3 md-line>최고 누적 기록</h3>
+            <p md-line>39.54초</p>
+          </md-list-item>
+          <md-list-item>
+            <h3 md-line>한조 사살</h3>
+            <p md-line>522킬</p>
+          </md-list-item>
+      </md-list>
+
+    </md-tab>
+    <md-tab label="보유 훈장">
+      <md-grid-list cols="2" rowHeight="100px">
+        <md-grid-tile *ngFor="let medal of medals" ><md-icon>{{medal.icon}}</md-icon> {{medal.name}}</md-grid-tile>
+      </md-grid-list>
+    </md-tab>
+  </md-tab-group>
+</md-card>
