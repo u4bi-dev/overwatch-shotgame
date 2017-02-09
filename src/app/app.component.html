@@ -17,7 +17,8 @@
     오버워치 전설의 샷감
 
     <span class="app-toolbar-filler"></span>
-    <button md-button (click)="login()">로그인</button>
+    <button *ngIf="!isLogin" md-button (click)="login()">로그인</button>
+    <button *ngIf="isLogin" md-button (click)="logout()">로그아웃</button>
   </md-toolbar>
 
   <div class="app-content">
