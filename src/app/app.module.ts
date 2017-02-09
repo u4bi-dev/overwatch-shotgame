@@ -19,6 +19,7 @@ import { RankComponent } from './rank/rank.component';
 import { ConfigComponent } from './config/config.component';
 
 import { AppCoreService } from './app-core.service';
+import { AppFirebaseService } from './app-firebase.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,10 @@ import { AppCoreService } from './app-core.service';
     MaterialModule.forRoot(),
     AppRouteModule
   ],
-  providers: [AppCoreService],
+  providers: [
+    AppCoreService,
+    AppFirebaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
