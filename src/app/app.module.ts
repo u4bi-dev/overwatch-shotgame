@@ -20,6 +20,7 @@ import { ConfigComponent } from './config/config.component';
 
 import { AppCoreService } from './providers/app-core.service';
 import { AppFirebaseService } from './providers/app-firebase.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AppFirebaseService } from './providers/app-firebase.service';
     InfoComponent,
     MainComponent,
     RankComponent,
-    ConfigComponent
+    ConfigComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
