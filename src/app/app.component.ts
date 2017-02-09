@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AppCoreService } from './app-core.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(private router : Router){}
+  constructor(private appCoreService : AppCoreService){}
 
   setRouter(path : string){
-    this.router.navigate(['/'+path]);
+    this.appCoreService.setRouter(path);
   }
 
 }

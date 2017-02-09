@@ -15,6 +15,8 @@ import { MainComponent } from './main/main.component';
 import { RankComponent } from './rank/rank.component';
 import { ConfigComponent } from './config/config.component';
 
+import { AppCoreService } from './app-core.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,7 @@ import { ConfigComponent } from './config/config.component';
     MaterialModule.forRoot(),
     AppRouteModule
   ],
-  providers: [],
+  providers: [AppCoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

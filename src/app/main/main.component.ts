@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppCoreService } from '../app-core.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appCoreService : AppCoreService){}
 
   ngOnInit() {
+  }
+
+  setRouter(path : string){
+    this.appCoreService.setRouter(path);
   }
 
 }
