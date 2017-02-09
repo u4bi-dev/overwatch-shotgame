@@ -6,6 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { IngameComponent } from './ingame/ingame.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { firebaseConfig } from './../environments/firebase.config';
+
 import { MaterialModule } from '@angular/material';
 import { AppRouteModule } from './app-route/app-route.module';
 
@@ -30,6 +33,7 @@ import { AppCoreService } from './app-core.service';
     BrowserModule,
     FormsModule,
     HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig),
     MaterialModule.forRoot(),
     AppRouteModule
   ],
