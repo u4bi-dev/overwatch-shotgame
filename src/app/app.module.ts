@@ -18,8 +18,8 @@ import { MainComponent } from './main/main.component';
 import { RankComponent } from './rank/rank.component';
 import { ConfigComponent } from './config/config.component';
 
-import { AppCoreService } from './app-core.service';
-import { AppFirebaseService } from './app-firebase.service';
+import { AppCoreService } from './providers/app-core.service';
+import { AppFirebaseService } from './providers/app-firebase.service';
 
 @NgModule({
   declarations: [

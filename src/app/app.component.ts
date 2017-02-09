@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { AppCoreService } from './app-core.service';
+import { AppCoreService } from './providers/app-core.service';
 
 import {MdSidenav} from '@angular/material';
 
