@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AppCoreService } from './app-core.service';
+
+import {MdSidenav} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,12 @@ import { AppCoreService } from './app-core.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('sidenav') sidenav:MdSidenav;
 
   constructor(private appCoreService : AppCoreService){}
 
   setRouter(path : string){
+    this.sidenav.close();
     this.appCoreService.setRouter(path);
   }
 
