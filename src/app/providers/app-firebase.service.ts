@@ -13,6 +13,13 @@ export class AppFirebaseService {
     });
   }
 
+  loginFacebook() {
+    return this.firebase.auth.login({
+      provider: AuthProviders.Facebook,
+      method: AuthMethods.Popup,
+    });
+  }
+
   logout(){
     return this.firebase.auth.logout();
   }

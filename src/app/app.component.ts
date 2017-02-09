@@ -2,7 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { AppCoreService } from './providers/app-core.service';
 import { AppFirebaseService } from './providers/app-firebase.service';
 
-import {MdSidenav, MdSnackBar} from '@angular/material';
+import {MdSidenav, MdSnackBar, MdDialog} from '@angular/material';
+
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,8 @@ export class AppComponent {
   constructor(
     private appCoreService : AppCoreService,
     private appFirebaseService : AppFirebaseService,
-    private snackbar: MdSnackBar
+    private snackbar: MdSnackBar,
+    private dialog: MdDialog
   ){
     this.appFirebaseService.firebase.auth.subscribe(
       (auth) => {
@@ -35,10 +38,8 @@ export class AppComponent {
     this.appCoreService.setRouter(path);
   }
 
-  login() {
-    this.appFirebaseService.loginGoogle().then((data) =>{
-      this.snackbar.open(data.auth.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
-    });
+  selectlogin() {
+    this.dialog.open(LoginComponent);
   }
 
   logout(){
