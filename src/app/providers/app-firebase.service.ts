@@ -6,4 +6,15 @@ export class AppFirebaseService {
 
   constructor(public firebase: AngularFire) { }
 
+  loginGoogle() {
+    return this.firebase.auth.login({
+      provider: AuthProviders.Google,
+      method: AuthMethods.Popup,
+    });
+  }
+
+  logout(){
+    return this.firebase.auth.logout();
+  }
+
 }
