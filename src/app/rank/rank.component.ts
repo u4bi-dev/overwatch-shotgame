@@ -7,6 +7,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RankComponent implements OnInit {
 
+  users = [
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    },
+    {
+      name: '홍길동',
+      score: 42,
+      kill : 23
+    }
+  ];
+
   constructor() { }
 
   ngOnInit() {
