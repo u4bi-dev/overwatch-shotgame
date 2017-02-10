@@ -13,7 +13,6 @@ import { LoginComponent } from './login/login.component';
 })
 export class AppComponent {
   @ViewChild('sidenav') sidenav:MdSidenav;
-  private userData:any;
 
   constructor(
     private appCoreService : AppCoreService,
@@ -21,9 +20,6 @@ export class AppComponent {
     private snackbar: MdSnackBar,
     private dialog: MdDialog
   ){
-    this.appFirebaseService.firebase.auth.subscribe(
-      (auth) => this.userData = auth
-    );
   }
 
   setRouter(path : string){

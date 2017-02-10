@@ -1,10 +1,20 @@
 import { Injectable } from '@angular/core';
-import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
+import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable} from 'angularfire2';
 
 @Injectable()
 export class AppFirebaseService {
 
-  constructor(public firebase: AngularFire) { }
+  public playerData : any;
+  public playerRecord : FirebaseListObservable<any>;
+
+  constructor(public firebase: AngularFire) {
+    this.firebase.auth.subscribe(
+      (auth) =>{
+        this.playerData = auth;
+        this.playerRecord = firebase.database.list('record/'+auth.uid);
+      }
+    );
+  }
 
   loginGoogle() {
     return this.firebase.auth.login({
