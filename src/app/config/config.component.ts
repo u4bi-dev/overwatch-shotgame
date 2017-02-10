@@ -12,6 +12,8 @@ export class ConfigComponent implements OnInit {
   playerName : string;
   playerEmail : string;
 
+  playerRecord : any = [];
+
   medals = [
     {
       name: '착한 훈장',
@@ -35,7 +37,12 @@ export class ConfigComponent implements OnInit {
   constructor(private appFirebaseService : AppFirebaseService) {
       this.playerName = this.appFirebaseService.playerData.auth.displayName;
       this.playerEmail = this.appFirebaseService.playerData.auth.email;
-      console.log(this.playerName);
+      
+      this.appFirebaseService.playerRecord.subscribe(
+        data =>{
+          data.map(item => this.playerRecord.push(item.$value));
+        }
+      );
   }
 
   ngOnInit() {
