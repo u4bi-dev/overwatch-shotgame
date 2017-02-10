@@ -34,4 +34,13 @@ export class AppFirebaseService {
     return this.firebase.auth.logout();
   }
 
+  save( time : number, kill : number){
+    let data = {
+      'time': time,
+      'kill': kill
+    };
+
+    this.firebase.database.list('record').update(this.playerData.uid, data);
+  }
+
 }
