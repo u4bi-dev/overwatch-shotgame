@@ -11,28 +11,9 @@ export class ConfigComponent implements OnInit {
 
   playerName : string;
   playerEmail : string;
-
+  playerMedal : any = [];
+  
   playerRecord : any = [];
-
-  medals = [
-    {
-      name: '착한 훈장',
-      icon: 'face'
-    },
-    {
-      name: '일급 훈장',
-      icon: 'face'
-    },
-    {
-      name: '한조 50킬 훈장',
-      icon: 'face'
-    },
-    {
-      name: '시즌1 랭킹권 훈장',
-      icon: 'face'
-    }
-  ];
-
 
   constructor(private appFirebaseService : AppFirebaseService) {
       this.playerName = this.appFirebaseService.playerData.auth.displayName;
@@ -43,6 +24,11 @@ export class ConfigComponent implements OnInit {
           data.map(item => {
             if(item.$key == 'kill') this.playerRecord.push(item.$value);
             if(item.$key == 'time') this.playerRecord.push(item.$value);
+            if(item.$key == 'medal'){
+              let dol = /^[$]/;
+              for(let obj in item) if(!dol.test(obj))
+                this.playerMedal.push(item[obj]);
+            }
           });
         }
       );
