@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AppFirebaseService } from '../providers/app-firebase.service';
+
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.css']
 })
 export class ConfigComponent implements OnInit {
+
+  playerName : string;
+  playerEmail : string;
 
   medals = [
     {
@@ -27,7 +32,11 @@ export class ConfigComponent implements OnInit {
   ];
 
 
-  constructor() { }
+  constructor(private appFirebaseService : AppFirebaseService) {
+      this.playerName = this.appFirebaseService.playerData.auth.displayName;
+      this.playerEmail = this.appFirebaseService.playerData.auth.email;
+      console.log(this.playerName);
+  }
 
   ngOnInit() {
   }

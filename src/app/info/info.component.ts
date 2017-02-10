@@ -27,6 +27,9 @@ export class InfoComponent implements OnInit {
   }
 
   showInfo() {
-      this.snackbar.open('닉네임 홍길동 레벨 24 경험치 32/100', '확인',{ duration: 3000});
+      let name = this.appFirebaseService.playerData.auth.displayName;
+      let email = this.appFirebaseService.playerData.auth.email;
+
+      this.snackbar.open('닉네임 : '+name+' 이메일 : '+email, '확인',{ duration: 2000});
   }
 }
