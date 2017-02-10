@@ -13,7 +13,7 @@ import { LoginComponent } from './login/login.component';
 })
 export class AppComponent {
   @ViewChild('sidenav') sidenav:MdSidenav;
-  private isLogin: boolean;
+  private userData:any;
 
   constructor(
     private appCoreService : AppCoreService,
@@ -22,14 +22,7 @@ export class AppComponent {
     private dialog: MdDialog
   ){
     this.appFirebaseService.firebase.auth.subscribe(
-      (auth) => {
-        if(auth == null){
-          this.isLogin = false;
-        }
-        else {
-          this.isLogin = true;
-        }
-      }
+      (auth) => this.userData = auth
     );
   }
 
