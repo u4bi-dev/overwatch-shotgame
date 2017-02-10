@@ -43,4 +43,13 @@ export class AppFirebaseService {
     this.firebase.database.list('record').update(this.playerData.uid, data);
   }
 
+  giveMedal(name : string, icon : string, word : string){
+    let medal = {
+      'name': name,
+      'icon': icon,
+      'word': word
+    };
+    this.firebase.database.list('record/'+this.playerData.uid+'/medal').push(medal);
+  }
+
 }

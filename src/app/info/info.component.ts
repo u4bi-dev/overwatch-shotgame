@@ -29,7 +29,7 @@ export class InfoComponent implements OnInit {
   showInfo() {
       let name = this.appFirebaseService.playerData.auth.displayName;
       let email = this.appFirebaseService.playerData.auth.email;
-
+      
       this.snackbar.open('닉네임 : '+name+' 이메일 : '+email, '확인',{ duration: 2000});
   }
 }

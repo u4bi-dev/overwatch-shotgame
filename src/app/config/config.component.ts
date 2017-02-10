@@ -40,7 +40,10 @@ export class ConfigComponent implements OnInit {
       
       this.appFirebaseService.playerRecord.subscribe(
         data =>{
-          data.map(item => this.playerRecord.push(item.$value));
+          data.map(item => {
+            if(item.$key == 'kill') this.playerRecord.push(item.$value);
+            if(item.$key == 'time') this.playerRecord.push(item.$value);
+          });
         }
       );
   }
