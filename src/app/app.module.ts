@@ -17,10 +17,12 @@ import { InfoComponent } from './info/info.component';
 import { MainComponent } from './main/main.component';
 import { RankComponent } from './rank/rank.component';
 import { ConfigComponent } from './config/config.component';
+import { LoginComponent } from './login/login.component';
 
 import { AppCoreService } from './providers/app-core.service';
 import { AppFirebaseService } from './providers/app-firebase.service';
-import { LoginComponent } from './login/login.component';
+import { IngameService } from './providers/ingame.service';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     AppCoreService,
-    AppFirebaseService
+    AppFirebaseService,
+    IngameService
   ],
   bootstrap: [AppComponent]
 })
