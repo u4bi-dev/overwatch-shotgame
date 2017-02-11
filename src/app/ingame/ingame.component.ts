@@ -94,7 +94,11 @@ export class IngameComponent implements OnInit {
 
 
     let window = this.ingameService.window;
-    this.ingameService.resultWord = this.game.add.text(window.width/1.6, 5, '누적시간 : '+this.ingameService.timer+'초', this.ingameService.resultWordAttribute);
+
+    if(this.ingameService.resultWord){
+      this.ingameService.resultWord.x = window.width/1.6;
+      this.ingameService.resultWord.y = 5;
+    } else this.ingameService.resultWord = this.game.add.text(window.width/1.6, 5, '누적시간 : '+this.ingameService.timer+'초', this.ingameService.resultWordAttribute);
 
 
     this.ingameService.interval = setInterval(() => { 
@@ -129,7 +133,11 @@ export class IngameComponent implements OnInit {
     this.ingameService.target.reset(click.x, click.y);
     this.ingameService.target.body.velocity.set(0, 0);
 
-    this.ingameService.resultWord.destroy();
+    let window = this.ingameService.window;
+
+    this.ingameService.resultWord.x = window.width/1.5;
+    this.ingameService.resultWord.y = window.height/2;
+    this.ingameService.resultWord.text = this.ingameService.timer+'초!';
   }
 
 }
