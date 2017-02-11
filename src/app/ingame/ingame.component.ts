@@ -41,7 +41,7 @@ export class IngameComponent implements OnInit {
     this.game.load.image('hanzo', path+resource.hanzo);
     this.game.load.image('click', path+resource.click);
     this.game.load.image('infoWord', path+resource.infoWord);
-    this.game.load.image('crosshair', path+resource.crosshair);
+    this.game.load.spritesheet('crosshair', path+resource.crosshair,80,80);
     this.game.load.image('target', path+resource.target);
   }
 
@@ -61,8 +61,9 @@ export class IngameComponent implements OnInit {
   }
 
   update() {
-
-  }
+    this.ingameService.crosshair.x = this.game.input.x-(this.ingameService.crosshair.width/2);
+    this.ingameService.crosshair.y = this.game.input.y-(this.ingameService.crosshair.height/2); 
+ }
 
 
   ready(){
