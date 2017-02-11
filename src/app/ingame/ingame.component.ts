@@ -1,7 +1,6 @@
 /// <reference path='../../lib/phaser.d.ts'/>
 import { Component, OnInit } from '@angular/core';
-import { Ingame } from '../providers/ingame';
-import { INGAME } from '../providers/mock-ingame';
+import { INGAME_RESOURCE_PATH } from '../providers/mock-ingame';
 
 @Component({
   selector: 'app-ingame',
@@ -30,7 +29,7 @@ export class IngameComponent implements OnInit {
     this.game.scale.pageAlignHorizontally = true;
     this.game.scale.pageAlignVertically = true;
 
-    let resource = INGAME;
+    let resource = INGAME_RESOURCE_PATH;
     let path = '../../../../';
 
     this.game.load.image('wallpaper', path+resource.wallpaper);

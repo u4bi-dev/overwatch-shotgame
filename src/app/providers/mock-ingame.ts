@@ -1,5 +1,5 @@
-import { Ingame } from './ingame';
-export var INGAME: Ingame = {
+import { Ingame_PATH } from './ingame_path';
+export var INGAME_RESOURCE_PATH : Ingame_PATH = {
     wallpaper : 'assets/images/INGAME-WALLPAPER.jpg',
     hanzo     : 'assets/images/INGAME-HANZO.png',
     click     : 'assets/images/INGAME_CLICK.png',

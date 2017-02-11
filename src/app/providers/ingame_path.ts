@@ -1,4 +1,4 @@
-export interface Ingame {
+export interface Ingame_PATH {
     wallpaper : string,
     hanzo     : string,
     click     : string,
