@@ -24,7 +24,8 @@ export class IngameComponent implements OnInit {
         ingameService : this.ingameService,
         start : this.start,
         ready : this.ready,
-        death : this.death
+        death : this.death,
+        target : this.target
     });
   }
 
@@ -82,12 +83,25 @@ export class IngameComponent implements OnInit {
     this.ingameService.started = true;
     this.ingameService.timer = 0;
 
-    setInterval(() => { this.ingameService.timer += 1 % 100;}, 1000);
+    setInterval(() => { 
+      this.ingameService.timer += 1 % 100;
+      this.target();
+    }, 1000);
   }
 
   death(){
     let window = this.ingameService.window;
     this.ingameService.hanzo = this.game.add.sprite(window.width/5, window.height/2, 'hanzo');
+  }
+
+  target(){
+    let anchor = this.ingameService.timer;
+
+    let value = Math.floor(Math.random() * 300);
+    value+=anchor;
+
+    this.ingameService.target.body.velocity.x +=value;
+    this.ingameService.target.body.velocity.y +=value;
   }
 
 }
