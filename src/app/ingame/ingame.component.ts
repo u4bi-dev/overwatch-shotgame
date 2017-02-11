@@ -25,7 +25,8 @@ export class IngameComponent implements OnInit {
         start : this.start,
         ready : this.ready,
         death : this.death,
-        target : this.target
+        target : this.target,
+        loss : this.loss
     });
   }
 
@@ -62,8 +63,15 @@ export class IngameComponent implements OnInit {
 
   update() {
     this.ingameService.crosshair.x = this.game.input.x-(this.ingameService.crosshair.width/2);
-    this.ingameService.crosshair.y = this.game.input.y-(this.ingameService.crosshair.height/2); 
- }
+    this.ingameService.crosshair.y = this.game.input.y-(this.ingameService.crosshair.height/2);
+    
+    let inside = this.game.physics.arcade.overlap(this.ingameService.crosshair, this.ingameService.target, null, null, this);
+    if(this.ingameService.started && !inside){
+        if(this.ingameService.timer == 0) return;
+        this.loss();
+
+    }
+  }
 
 
   ready(){
@@ -84,7 +92,7 @@ export class IngameComponent implements OnInit {
     this.ingameService.started = true;
     this.ingameService.timer = 0;
 
-    setInterval(() => { 
+    this.ingameService.interval = setInterval(() => { 
       this.ingameService.timer += 1 % 100;
       this.target();
     }, 1000);
@@ -103,6 +111,17 @@ export class IngameComponent implements OnInit {
 
     this.ingameService.target.body.velocity.x +=value;
     this.ingameService.target.body.velocity.y +=value;
+  }
+
+  loss(){
+    clearTimeout(this.ingameService.interval);
+    this.ingameService.started = false;
+    this.ready();
+
+    let click = this.ingameService.click;
+    this.ingameService.target.reset(click.x, click.y);
+    this.ingameService.target.body.velocity.set(0, 0);
+
   }
 
 }

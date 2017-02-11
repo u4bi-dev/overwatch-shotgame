@@ -22,6 +22,7 @@ export class IngameService implements Ingame{
 
   started : boolean;
   timer : number;
+  interval : any; 
 
   constructor() { }
 
