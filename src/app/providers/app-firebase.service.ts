@@ -10,6 +10,7 @@ export class AppFirebaseService {
   constructor(public firebase: AngularFire) {
     this.firebase.auth.subscribe(
       (auth) =>{
+        if(!auth) return 0;
         this.playerData = auth;
         this.playerRecord = firebase.database.list('record/'+auth.uid);
       }
