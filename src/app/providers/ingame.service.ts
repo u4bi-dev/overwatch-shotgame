@@ -20,6 +20,9 @@ export class IngameService implements Ingame{
     height : 1200
   };
 
+  started : boolean;
+  timer : number;
+
   constructor() { }
 
 }

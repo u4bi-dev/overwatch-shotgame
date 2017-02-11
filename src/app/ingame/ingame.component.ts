@@ -11,11 +11,9 @@ import { INGAME_RESOURCE_PATH } from '../providers/mock-ingame';
 })
 export class IngameComponent implements OnInit {
 
-  progress: number = 0;
   game: Phaser.Game;
 
   constructor(private ingameService : IngameService) {
-      setInterval(() => { this.progress += 1 % 100;}, 1000);
   }
 
   ngOnInit() {
@@ -41,17 +39,22 @@ export class IngameComponent implements OnInit {
     this.game.load.image('wallpaper', path+resource.wallpaper);
     this.game.load.image('hanzo', path+resource.hanzo);
     this.game.load.image('click', path+resource.click);
-    this.game.load.image('infoword', path+resource.infoWord);
+    this.game.load.image('infoWord', path+resource.infoWord);
     this.game.load.image('crosshair', path+resource.crosshair);
     this.game.load.image('target', path+resource.target);
   }
 
   create() {
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
     let window = this.ingameService.window;
     this.ingameService.wallpaper = this.game.add.tileSprite(0, 0, window.width, window.height, 'wallpaper');
     this.ready();
 
     this.ingameService.target = this.game.add.sprite(this.ingameService.click.x, this.ingameService.click.y, 'target');
+    this.game.physics.enable(this.ingameService.target, Phaser.Physics.ARCADE);
+    this.ingameService.target.body.collideWorldBounds = true;
+    this.ingameService.target.body.bounce.set(1);
+
     this.ingameService.crosshair = this.game.add.sprite(0, 0, 'crosshair');
 
   }
@@ -71,7 +74,15 @@ export class IngameComponent implements OnInit {
   }
 
   start(){
+    this.ingameService.target.body.velocity.set(200, 0);
 
+    this.ingameService.click.destroy();
+    this.ingameService.infoWord.destroy();
+
+    this.ingameService.started = true;
+    this.ingameService.timer = 0;
+
+    setInterval(() => { this.ingameService.timer += 1 % 100;}, 1000);
   }
 
   death(){

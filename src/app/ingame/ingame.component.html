@@ -1,9 +1,9 @@
-현재 기록 {{progress}}초
+현재 기록 {{this.ingameService.timer}}초
 <md-progress-bar
     class="app-progress"
     color="accent"
     mode="determinate"
-    [value]="progress"
+    [value]="this.ingameService.timer"
     aria-label="accrue timebar">
 </md-progress-bar>
 
