@@ -6,6 +6,6 @@ export var INGAME_RESOURCE_PATH = {
     crosshair   : 'assets/images/INGAME-CROSS_HAIR.png',
     target      : 'assets/images/INGAME-TARGET.png',
     audio_die   : 'assets/audio/INGAME-DIE.mp3',
-    audio_kill  : 'assets/images/INGAME-KILL.mp3',
-    audio_stop  : 'assets/images/INGAME-STOP.mp3'
+    audio_kill  : 'assets/audio/INGAME-KILL.mp3',
+    audio_stop  : 'assets/audio/INGAME-STOP.mp3'
 };

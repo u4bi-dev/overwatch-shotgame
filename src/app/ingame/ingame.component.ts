@@ -46,6 +46,10 @@ export class IngameComponent implements OnInit {
     this.game.load.image('infoWord', path+resource.infoWord);
     this.game.load.spritesheet('crosshair', path+resource.crosshair,80,80);
     this.game.load.image('target', path+resource.target);
+
+    this.game.load.audio('die', path+resource.audio_die);
+    this.game.load.audio('kill', path+resource.audio_kill);
+    this.game.load.audio('stop', path+resource.audio_stop);
   }
 
   create() {
@@ -65,6 +69,10 @@ export class IngameComponent implements OnInit {
 
     this.game.input.onDown.add(this.kill, this);
     this.ingameService.crosshair.animations.add('attack', [1, 0, 1, 0, 1, 0, 1, 0, 1, 0], 10, false);
+
+    this.ingameService.audio_die = this.game.add.audio('die');
+    this.ingameService.audio_kill = this.game.add.audio('kill');
+    this.ingameService.audio_stop = this.game.add.audio('stop');
   }
 
   update() {
@@ -77,6 +85,7 @@ export class IngameComponent implements OnInit {
         clearTimeout(this.ingameService.attack);
 
         this.loss();
+        this.ingameService.audio_die.play();
 
    }
   }
@@ -124,16 +133,20 @@ export class IngameComponent implements OnInit {
     let timer = this.ingameService.timer;
     let event      = this.ingameService.event;
 
-    if(started)return;
+    if(!started)return;
     if(timer == 0) return;
-    if(timer != 0 && started && event) return this.death;
+    if(!event) return this.death;
 
     clearTimeout(this.ingameService.attack);
     this.ingameService.event=false;
 
+    this.ingameService.audio_kill.stop();
+    this.ingameService.audio_stop.play();
   }
 
   death(){
+    this.ingameService.audio_kill.play();
+
     this.ingameService.started = false;
     let window = this.ingameService.window;
     this.ingameService.hanzo = this.game.add.sprite(window.width/5, window.height/2, 'hanzo');
@@ -145,7 +158,7 @@ export class IngameComponent implements OnInit {
   target(){
     let anchor = this.ingameService.timer;
 
-    let value = Math.floor(Math.random() * 100);
+    let value = Math.floor(Math.random() * 1);
     value+=anchor;
 
     this.ingameService.target.body.velocity.x +=value;
@@ -157,8 +170,13 @@ export class IngameComponent implements OnInit {
       let timer   = this.ingameService.timer;
       let event   = this.ingameService.event;
       if(started && !event && timer != 0 && value%5 == -0){
+        this.ingameService.audio_kill.play();
+        this.ingameService.event = true;
+
         this.ingameService.crosshair.animations.play('attack');
-        this.ingameService.attack = setTimeout(this.death(), 1000);
+        this.ingameService.attack = setTimeout(function(){
+          this.death();
+        }, 1000);
 
       }
     }
