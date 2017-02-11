@@ -17,13 +17,15 @@ export class IngameComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.game = new Phaser.Game(1920, 1200, Phaser.AUTO, 'ingame', {
+    let window = this.ingameService.window;
+    this.game = new Phaser.Game(window.width, window.height, Phaser.AUTO, 'ingame', {
         preload: this.preload,
         create: this.create,
         update: this.update,
         ingameService : this.ingameService,
         start : this.start,
         ready : this.ready,
+        kill : this.kill,
         death : this.death,
         target : this.target,
         loss : this.loss
@@ -56,9 +58,13 @@ export class IngameComponent implements OnInit {
     this.game.physics.enable(this.ingameService.target, Phaser.Physics.ARCADE);
     this.ingameService.target.body.collideWorldBounds = true;
     this.ingameService.target.body.bounce.set(1);
+    this.ingameService.target.checkWorldBounds = true;
 
     this.ingameService.crosshair = this.game.add.sprite(0, 0, 'crosshair');
     this.game.physics.enable(this.ingameService.crosshair, Phaser.Physics.ARCADE);
+
+    this.game.input.onDown.add(this.kill, this);
+    this.ingameService.crosshair.animations.add('attack', [1, 0, 1, 0, 1, 0, 1, 0, 1, 0], 10, false);
   }
 
   update() {
@@ -68,6 +74,8 @@ export class IngameComponent implements OnInit {
     let inside = this.game.physics.arcade.overlap(this.ingameService.crosshair, this.ingameService.target, null, null, this);
     if(this.ingameService.started && !inside){
         if(this.ingameService.timer == 0) return;
+        clearTimeout(this.ingameService.attack);
+
         this.loss();
 
    }
@@ -94,11 +102,13 @@ export class IngameComponent implements OnInit {
 
 
     let window = this.ingameService.window;
+    let timerText = '누적시간 : '+this.ingameService.timer+'초';
 
     if(this.ingameService.resultWord){
       this.ingameService.resultWord.x = window.width/1.6;
       this.ingameService.resultWord.y = 5;
-    } else this.ingameService.resultWord = this.game.add.text(window.width/1.6, 5, '누적시간 : '+this.ingameService.timer+'초', this.ingameService.resultWordAttribute);
+      this.ingameService.resultWord.text = timerText;
+    } else this.ingameService.resultWord = this.game.add.text(window.width/1.6, 5, timerText, this.ingameService.resultWordAttribute);
 
 
     this.ingameService.interval = setInterval(() => { 
@@ -109,23 +119,56 @@ export class IngameComponent implements OnInit {
     }, 1000);
   }
 
+  kill(){
+    let started = this.ingameService.started;
+    let timer = this.ingameService.timer;
+    let event      = this.ingameService.event;
+
+    if(started)return;
+    if(timer == 0) return;
+    if(timer != 0 && started && event) return this.death;
+
+    clearTimeout(this.ingameService.attack);
+    this.ingameService.event=false;
+
+  }
+
   death(){
+    this.ingameService.started = false;
     let window = this.ingameService.window;
     this.ingameService.hanzo = this.game.add.sprite(window.width/5, window.height/2, 'hanzo');
+    
+    this.ingameService.event = false;
+    setTimeout(this.loss(), 1000);
   }
 
   target(){
     let anchor = this.ingameService.timer;
 
-    let value = Math.floor(Math.random() * 300);
+    let value = Math.floor(Math.random() * 100);
     value+=anchor;
 
     this.ingameService.target.body.velocity.x +=value;
     this.ingameService.target.body.velocity.y +=value;
+
+    let flag = Math.floor(Math.random() * 2);
+    if(flag){
+      let started = this.ingameService.started;
+      let timer   = this.ingameService.timer;
+      let event   = this.ingameService.event;
+      if(started && !event && timer != 0 && value%5 == -0){
+        this.ingameService.crosshair.animations.play('attack');
+        this.ingameService.attack = setTimeout(this.death(), 1000);
+
+      }
+    }
+
   }
 
   loss(){
     clearTimeout(this.ingameService.interval);
+    if(this.ingameService.hanzo) this.ingameService.hanzo.destroy();
+
     this.ingameService.started = false;
     this.ready();
 

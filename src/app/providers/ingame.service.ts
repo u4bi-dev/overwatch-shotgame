@@ -30,6 +30,9 @@ export class IngameService implements Ingame{
     fill: '#ffff00'
   };
 
+  event  : boolean;
+  attack : any;
+
   constructor() { }
 
 }
