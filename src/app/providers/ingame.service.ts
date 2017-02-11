@@ -22,7 +22,13 @@ export class IngameService implements Ingame{
 
   started : boolean;
   timer : number;
-  interval : any; 
+  interval : any;
+
+  resultWord : any;
+  resultWordAttribute = {
+    font: 'bold 5rem NanumGothic',
+    fill: '#ffff00'
+  };
 
   constructor() { }
 

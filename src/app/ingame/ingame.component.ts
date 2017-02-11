@@ -58,7 +58,7 @@ export class IngameComponent implements OnInit {
     this.ingameService.target.body.bounce.set(1);
 
     this.ingameService.crosshair = this.game.add.sprite(0, 0, 'crosshair');
-
+    this.game.physics.enable(this.ingameService.crosshair, Phaser.Physics.ARCADE);
   }
 
   update() {
@@ -70,7 +70,7 @@ export class IngameComponent implements OnInit {
         if(this.ingameService.timer == 0) return;
         this.loss();
 
-    }
+   }
   }
 
 
@@ -92,9 +92,16 @@ export class IngameComponent implements OnInit {
     this.ingameService.started = true;
     this.ingameService.timer = 0;
 
+
+    let window = this.ingameService.window;
+    this.ingameService.resultWord = this.game.add.text(window.width/1.6, 5, '누적시간 : '+this.ingameService.timer+'초', this.ingameService.resultWordAttribute);
+
+
     this.ingameService.interval = setInterval(() => { 
       this.ingameService.timer += 1 % 100;
       this.target();
+      
+       this.ingameService.resultWord.text = '누적시간 : '+this.ingameService.timer+'초';
     }, 1000);
   }
 
@@ -122,6 +129,7 @@ export class IngameComponent implements OnInit {
     this.ingameService.target.reset(click.x, click.y);
     this.ingameService.target.body.velocity.set(0, 0);
 
+    this.ingameService.resultWord.destroy();
   }
 
 }
