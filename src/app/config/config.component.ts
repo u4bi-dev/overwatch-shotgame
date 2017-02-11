@@ -25,9 +25,8 @@ export class ConfigComponent implements OnInit {
             if(item.$key == 'kill') this.playerRecord.push(item.$value);
             if(item.$key == 'time') this.playerRecord.push(item.$value);
             if(item.$key == 'medal'){
-              let dol = /^[$]/;
-              for(let obj in item) if(!dol.test(obj))
-                this.playerMedal.push(item[obj]);
+              let dol =/^[$]/;
+              Object.keys(item).filter(obj => !dol.test(obj)).map(obj => this.playerMedal.push(item[obj]));
             }
           });
         }
