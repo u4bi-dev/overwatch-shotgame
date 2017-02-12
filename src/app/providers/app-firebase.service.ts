@@ -62,12 +62,7 @@ export class AppFirebaseService implements AppUserService{
     this.firebase.database.list('record').update(this.playerData.uid, data);
   }
 
-  save( time : number, kill : number){
-    let data = {
-      'time': time,
-      'kill': kill
-    };
-
+  save(data : any){
     this.firebase.database.list('record').update(this.playerData.uid, data);
   }
 

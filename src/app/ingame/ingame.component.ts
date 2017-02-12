@@ -33,7 +33,8 @@ export class IngameComponent implements OnInit {
         death : this.death,
         target : this.target,
         loss : this.loss,
-        snackbar : this.snackbar
+        snackbar : this.snackbar,
+        save : this.save
     });
   }
 
@@ -187,7 +188,7 @@ export class IngameComponent implements OnInit {
         this.ingameService.crosshair.animations.play('attack');;
         this.ingameService.attack = setTimeout(() => {  
             this.death();
-        }, 1500);
+        }, 1000);
 
       }
     }
@@ -213,8 +214,25 @@ export class IngameComponent implements OnInit {
     let timer = this.ingameService.timer;
     let nerf = this.ingameService.nerf;
     this.ingameService.resultWord.text = timer+'초!\n궁 너프 '+nerf+'회';
-    this.appFirebaseService.save(timer, nerf);
-    this.snackbar.open('당신의 경기 결과는 경과시간 '+timer+'초 처치 '+nerf+'회입니다.','',{ duration: 1500});
+    this.save(timer, nerf);
+    this.snackbar.open('당신의 경기 결과는 경과시간 '+timer+'초 처치 '+nerf+'회입니다.','',{ duration: 3000});
+  }
+
+  save(time : number, kill : number){
+    let result = {};
+    let flag : boolean;
+
+    this.appFirebaseService.playerRecord.subscribe(
+      data =>{
+        data.map(item => {
+          if(item.$key == 'time' && item.$value < time) result['time'] = time;
+          if(item.$key == 'kill' && item.$value < kill) result['kill'] = kill;
+        });
+
+        if(flag=!flag)this.appFirebaseService.save(result);
+        
+      }
+    );
   }
 
 }
