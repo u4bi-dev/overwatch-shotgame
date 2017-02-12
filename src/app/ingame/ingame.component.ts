@@ -1,8 +1,8 @@
 /// <reference path='../../lib/phaser.d.ts'/>
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs/Rx';
 
 import { IngameService } from '../providers/ingame.service';
+import { AppFirebaseService } from '../providers/app-firebase.service';
 
 import { INGAME_RESOURCE_PATH } from '../providers/mock-ingame';
 
@@ -15,7 +15,7 @@ export class IngameComponent implements OnInit {
 
   game: Phaser.Game;
 
-  constructor(private ingameService : IngameService) {
+  constructor(private ingameService : IngameService, private appFirebaseService : AppFirebaseService) {
   }
 
   ngOnInit() {
@@ -25,6 +25,7 @@ export class IngameComponent implements OnInit {
         create: this.create,
         update: this.update,
         ingameService : this.ingameService,
+        appFirebaseService : this.appFirebaseService,
         start : this.start,
         ready : this.ready,
         kill : this.kill,
@@ -204,7 +205,11 @@ export class IngameComponent implements OnInit {
 
     this.ingameService.resultWord.x = window.width/1.5;
     this.ingameService.resultWord.y = window.height/2;
-    this.ingameService.resultWord.text = this.ingameService.timer+'초!\n궁 너프 '+this.ingameService.nerf+'회';
+
+    let timer = this.ingameService.timer;
+    let nerf = this.ingameService.nerf;
+    this.ingameService.resultWord.text = timer+'초!\n궁 너프 '+nerf+'회';
+    this.appFirebaseService.save(timer, nerf);
   }
 
 }
