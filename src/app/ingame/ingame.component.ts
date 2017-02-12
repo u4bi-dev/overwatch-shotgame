@@ -106,7 +106,7 @@ export class IngameComponent implements OnInit {
   }
 
   start(){
-    if(!this.appFirebaseService.playerData) return this.snackbar.open('로그인 후에 게임을 시작하실 수 있습니다.');
+    if(!this.appFirebaseService.playerData) return this.snackbar.open('로그인 후에 게임을 시작하실 수 있습니다.','확인',{ duration: 1500});
       
     this.ingameService.target.body.velocity.set(200, 0);
 
@@ -170,7 +170,7 @@ export class IngameComponent implements OnInit {
   target(){
     let anchor = this.ingameService.timer;
 
-    let value = Math.floor(Math.random() * 1);
+    let value = Math.floor(Math.random() * 100);
     value+=anchor;
 
     this.ingameService.target.body.velocity.x +=value;
@@ -214,6 +214,7 @@ export class IngameComponent implements OnInit {
     let nerf = this.ingameService.nerf;
     this.ingameService.resultWord.text = timer+'초!\n궁 너프 '+nerf+'회';
     this.appFirebaseService.save(timer, nerf);
+    this.snackbar.open('당신의 경기 결과는 경과시간 '+timer+'초 처치 '+nerf+'회입니다.','',{ duration: 1500});
   }
 
 }

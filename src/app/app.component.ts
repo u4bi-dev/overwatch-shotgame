@@ -23,7 +23,7 @@ export class AppComponent {
   }
 
   setRouter(path : string){
-    if(path == 'config' || path == 'rank') if(!this.appFirebaseService.playerData) return this.snackbar.open('로그인 후에 확인이 가능합니다.');
+    if(path == 'config' || path == 'rank') if(!this.appFirebaseService.playerData) return this.snackbar.open('로그인 후에 확인이 가능합니다.','확인',{ duration: 1500});
     this.sidenav.close();
     this.appCoreService.setRouter(path);
   }

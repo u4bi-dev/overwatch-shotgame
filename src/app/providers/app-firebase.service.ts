@@ -6,6 +6,7 @@ import { AppUserService } from './app-user.service';
 @Injectable()
 export class AppFirebaseService implements AppUserService{
 
+  id : string; 
   name : string;
   email : string;
   photo : string = '2';
@@ -23,6 +24,7 @@ export class AppFirebaseService implements AppUserService{
 
         let userData = auth.auth;
 
+        this.id = userData.uid;
         this.name = userData.displayName;
         this.email = userData.email;
         this.photo = userData.photoURL;

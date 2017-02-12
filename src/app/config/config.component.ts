@@ -13,22 +13,22 @@ export class ConfigComponent implements OnInit {
   playerRecord : any = [];
 
   constructor(private appFirebaseService : AppFirebaseService) {
-    
-      this.appFirebaseService.playerRecord.subscribe(
-        data =>{
-          data.map(item => {
-            if(item.$key == 'kill') this.playerRecord.push(item.$value);
-            if(item.$key == 'time') this.playerRecord.push(item.$value);
-            if(item.$key == 'medal'){
-              let dol =/^[$]/;
-              Object.keys(item).filter(obj => !dol.test(obj)).map(obj => this.playerMedal.push(item[obj]));
-            }
-          });
-        }
-      );
   }
 
   ngOnInit() {
+
+    this.appFirebaseService.firebase.database.list('record/'+this.appFirebaseService.id).subscribe(
+      data =>{
+        data.map(item => {
+          if(item.$key == 'kill') this.playerRecord.push(item.$value);
+          if(item.$key == 'time') this.playerRecord.push(item.$value);
+          if(item.$key == 'medal'){
+            let dol =/^[$]/;
+            Object.keys(item).filter(obj => !dol.test(obj)).map(obj => this.playerMedal.push(item[obj]));
+          }
+        });
+      }
+    );
   }
 
 }

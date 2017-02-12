@@ -11,7 +11,9 @@ export class RankComponent implements OnInit {
 
   playerRank : any = [];
 
-  constructor(private appFirebaseService : AppFirebaseService) {
+  constructor(private appFirebaseService : AppFirebaseService) {}
+  
+  ngOnInit() {
     let self = this;
 
     this.appFirebaseService.firebase.database.list('record').subscribe(
@@ -26,9 +28,6 @@ export class RankComponent implements OnInit {
         });
       }
     );
-  }
-
-  ngOnInit() {
   }
 
 }
