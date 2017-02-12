@@ -16,6 +16,8 @@ export class InfoComponent implements OnInit {
   }
 
   showMaxrecord() {
+      if(!this.appFirebaseService.playerData) return this.snackbar.open('로그인 후에 조회가 가능합니다.');
+
       this.appFirebaseService.playerRecord.subscribe(
         data =>{
           data.map(item => {
@@ -27,6 +29,8 @@ export class InfoComponent implements OnInit {
   }
 
   showInfo() {
+      if(!this.appFirebaseService.playerData) return this.snackbar.open('로그인 후에 조회가 가능합니다.');
+      
       let name = this.appFirebaseService.playerData.auth.displayName;
       let email = this.appFirebaseService.playerData.auth.email;
       

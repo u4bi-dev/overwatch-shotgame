@@ -1,5 +1,6 @@
 /// <reference path='../../lib/phaser.d.ts'/>
 import { Component, OnInit } from '@angular/core';
+import {MdSnackBar} from '@angular/material';
 
 import { IngameService } from '../providers/ingame.service';
 import { AppFirebaseService } from '../providers/app-firebase.service';
@@ -15,7 +16,7 @@ export class IngameComponent implements OnInit {
 
   game: Phaser.Game;
 
-  constructor(private ingameService : IngameService, private appFirebaseService : AppFirebaseService) {
+  constructor(private snackbar: MdSnackBar, private ingameService : IngameService, private appFirebaseService : AppFirebaseService) {
   }
 
   ngOnInit() {
@@ -31,7 +32,8 @@ export class IngameComponent implements OnInit {
         kill : this.kill,
         death : this.death,
         target : this.target,
-        loss : this.loss
+        loss : this.loss,
+        snackbar : this.snackbar
     });
   }
 
@@ -104,6 +106,8 @@ export class IngameComponent implements OnInit {
   }
 
   start(){
+    if(!this.appFirebaseService.playerData) return this.snackbar.open('로그인 후에 게임을 시작하실 수 있습니다.');
+      
     this.ingameService.target.body.velocity.set(200, 0);
 
     this.ingameService.click.destroy();
