@@ -18,7 +18,10 @@ export class RankComponent implements OnInit {
 
     this.appFirebaseService.firebase.database.list('record').subscribe(
       data =>{
+        let tick = 0;
         data.map( item => {
+          tick++;
+          if(tick > 9)return 0;
           self.playerRank.push({
             'name' : item.name,
             'email' : item.email,
