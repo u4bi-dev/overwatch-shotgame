@@ -1,5 +1,7 @@
 /// <reference path='../../lib/phaser.d.ts'/>
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs/Rx';
+
 import { IngameService } from '../providers/ingame.service';
 
 import { INGAME_RESOURCE_PATH } from '../providers/mock-ingame';
@@ -108,6 +110,7 @@ export class IngameComponent implements OnInit {
 
     this.ingameService.started = true;
     this.ingameService.timer = 0;
+    this.ingameService.nerf = 0;
 
 
     let window = this.ingameService.window;
@@ -121,7 +124,7 @@ export class IngameComponent implements OnInit {
 
 
     this.ingameService.interval = setInterval(() => { 
-      this.ingameService.timer += 1 % 100;
+      this.ingameService.timer++;
       this.target();
       
        this.ingameService.resultWord.text = '누적시간 : '+this.ingameService.timer+'초';
@@ -142,6 +145,8 @@ export class IngameComponent implements OnInit {
 
     this.ingameService.audio_kill.stop();
     this.ingameService.audio_stop.play();
+    this.ingameService.nerf++;
+    this.ingameService.resultWord.text = '한조 궁너프!';
   }
 
   death(){
@@ -152,7 +157,9 @@ export class IngameComponent implements OnInit {
     this.ingameService.hanzo = this.game.add.sprite(window.width/5, window.height/2, 'hanzo');
     
     this.ingameService.event = false;
-    setTimeout(this.loss(), 1000);
+    setTimeout(() => {
+      this.loss();
+    }, 1000);
   }
 
   target(){
@@ -170,13 +177,12 @@ export class IngameComponent implements OnInit {
       let timer   = this.ingameService.timer;
       let event   = this.ingameService.event;
       if(started && !event && timer != 0 && value%5 == -0){
-        this.ingameService.audio_kill.play();
         this.ingameService.event = true;
 
-        this.ingameService.crosshair.animations.play('attack');
-        this.ingameService.attack = setTimeout(function(){
-          this.death();
-        }, 1000);
+        this.ingameService.crosshair.animations.play('attack');;
+        this.ingameService.attack = setTimeout(() => {  
+            this.death();
+        }, 1500);
 
       }
     }
@@ -198,7 +204,7 @@ export class IngameComponent implements OnInit {
 
     this.ingameService.resultWord.x = window.width/1.5;
     this.ingameService.resultWord.y = window.height/2;
-    this.ingameService.resultWord.text = this.ingameService.timer+'초!';
+    this.ingameService.resultWord.text = this.ingameService.timer+'초!\n궁 너프 '+this.ingameService.nerf+'회';
   }
 
 }

@@ -22,6 +22,8 @@ export class IngameService implements Ingame{
 
   started : boolean;
   timer : number;
+  nerf : number;
+
   interval : any;
 
   resultWord : any;
