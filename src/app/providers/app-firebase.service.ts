@@ -18,7 +18,7 @@ export class AppFirebaseService implements AppUserService{
   constructor(public firebase: AngularFire) {
     this.firebase.auth.subscribe(
       (auth) =>{
-        if(!auth) return 0;
+        if(!auth) return this.playerData=null;
         this.playerData = auth;
 
         let userData = auth.auth;
