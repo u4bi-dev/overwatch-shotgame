@@ -17,7 +17,12 @@ export class RankComponent implements OnInit {
     this.appFirebaseService.firebase.database.list('record').subscribe(
       data =>{
         data.map( item => {
-          self.playerRank.push({ 'name' : item.name, 'time' : item.time, 'kill' : item.kill});
+          self.playerRank.push({
+            'name' : item.name,
+            'email' : item.email,
+            'photo' : item.photo,
+            'time' : item.time,
+            'kill' : item.kill});
         });
       }
     );

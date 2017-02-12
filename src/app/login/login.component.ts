@@ -23,12 +23,16 @@ export class LoginComponent implements OnInit {
     switch(type){
       case 0:{
           this.appFirebaseService.loginGoogle().then((data) =>{
-              this.snackbar.open(data.auth.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
+              let userData = data.auth;
+              this.appFirebaseService.updateProfile(userData.displayName, userData.email, userData.photoURL);
+              this.snackbar.open(userData.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
           });
       }
       case 1:{
           this.appFirebaseService.loginFacebook().then((data) =>{
-              this.snackbar.open(data.auth.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
+              let userData = data.auth;
+              this.appFirebaseService.updateProfile(userData.displayName, userData.email, userData.photoURL);
+              this.snackbar.open(userData.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
           });
       }
     }

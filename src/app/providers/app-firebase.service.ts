@@ -51,7 +51,13 @@ export class AppFirebaseService implements AppUserService{
   }
 
   updateProfile(name : string, email : string, photo : string){
+    let data = {
+      'name': name,
+      'email': email,
+      'photo' : photo
+    };
 
+    this.firebase.database.list('record').update(this.playerData.uid, data);
   }
 
   save( time : number, kill : number){
