@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
 import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable} from 'angularfire2';
 
-@Injectable()
-export class AppFirebaseService {
+import { AppUserService } from './app-user.service';
 
+@Injectable()
+export class AppFirebaseService implements AppUserService{
+
+  name : string;
+  email : string;
+  photo : string = '2';
+  time : number = 0;
+  kill : number = 0;
+  
   public playerData : any;
   public playerRecord : FirebaseListObservable<any>;
 
@@ -12,6 +20,13 @@ export class AppFirebaseService {
       (auth) =>{
         if(!auth) return 0;
         this.playerData = auth;
+
+        let userData = auth.auth;
+
+        this.name = userData.displayName;
+        this.email = userData.email;
+        this.photo = userData.photoURL;
+
         this.playerRecord = firebase.database.list('record/'+auth.uid);
       }
     );
@@ -33,6 +48,10 @@ export class AppFirebaseService {
 
   logout(){
     return this.firebase.auth.logout();
+  }
+
+  updateProfile(name : string, email : string, photo : string){
+
   }
 
   save( time : number, kill : number){

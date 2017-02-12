@@ -17,6 +17,7 @@
     오버워치 전설의 샷감
 
     <span class="app-toolbar-filler"></span>
+    <img *ngIf="this.appFirebaseService.playerData" class="photo" [src]="this.appFirebaseService.photo">
     <button *ngIf="!this.appFirebaseService.playerData" md-button (click)="selectlogin()">로그인</button>
     <button *ngIf="this.appFirebaseService.playerData" md-button (click)="logout()">로그아웃</button>
   </md-toolbar>

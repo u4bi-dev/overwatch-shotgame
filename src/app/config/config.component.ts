@@ -9,16 +9,11 @@ import { AppFirebaseService } from '../providers/app-firebase.service';
 })
 export class ConfigComponent implements OnInit {
 
-  playerName : string;
-  playerEmail : string;
-  playerMedal : any = [];
-  
+  playerMedal : any = [];  
   playerRecord : any = [];
 
   constructor(private appFirebaseService : AppFirebaseService) {
-      this.playerName = this.appFirebaseService.playerData.auth.displayName;
-      this.playerEmail = this.appFirebaseService.playerData.auth.email;
-      
+    
       this.appFirebaseService.playerRecord.subscribe(
         data =>{
           data.map(item => {

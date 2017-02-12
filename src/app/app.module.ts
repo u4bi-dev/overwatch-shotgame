@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 
 import { AppCoreService } from './providers/app-core.service';
 import { AppFirebaseService } from './providers/app-firebase.service';
+import { AppUserService } from './providers/app-user.service';
 import { IngameService } from './providers/ingame.service';
 
 
@@ -45,6 +46,7 @@ import { IngameService } from './providers/ingame.service';
   providers: [
     AppCoreService,
     AppFirebaseService,
+    AppUserService,
     IngameService
   ],
   bootstrap: [AppComponent]

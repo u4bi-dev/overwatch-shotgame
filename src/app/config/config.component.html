@@ -1,6 +1,6 @@
 <md-card class="app-input-section">
 
-  <md-input #nickname [(ngModel)]="playerName" placeholder="이름" maxlength="20">
+  <md-input #nickname [(ngModel)]="this.appFirebaseService.name" placeholder="이름" maxlength="20">
     <span md-prefix>
       <i class="material-icons app-input-icon">person</i>
     </span>
@@ -9,7 +9,7 @@
     </md-hint>
   </md-input>
 
-  <md-input #email [(ngModel)]="playerEmail" placeholder="이메일" maxlength="50">
+  <md-input #email [(ngModel)]="this.appFirebaseService.email" placeholder="이메일" maxlength="50">
     <span md-prefix>
       <i class="material-icons app-input-icon">extension</i>
     </span>
