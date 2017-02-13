@@ -220,19 +220,20 @@ export class IngameComponent implements OnInit {
 
   save(time : number, kill : number){
     let result = {};
-    let flag : boolean;
-    
+    let flag = false;
     this.appFirebaseService.playerRecord.subscribe(
       data =>{
         if(data.length < 4)this.appFirebaseService.save({'time': time, 'kill': kill, 'medal' : 0});
         else {
           data.map(item => {
-            if(item.$key == 'time' && item.$value < time) result['time'] = time;
-            if(item.$key == 'kill' && item.$value < kill) result['kill'] = kill;
-            if(item.$key == 'medal' && item.$value == 0)this.appFirebaseService.giveMedal(this.appFirebaseService.id, '개척자', 'pets', '베타 테스트 일원에게 주어지는 메달입니다.');
+              if(item.$key == 'time' && item.$value < time) result['time'] = time;
+              if(item.$key == 'kill' && item.$value < kill) result['kill'] = kill;
+              if(!flag && item.$key == 'medal' && item.$value == 0){
+                this.appFirebaseService.giveMedal(this.appFirebaseService.id, '개척자', 'pets', '베타 테스트 일원에게 주어지는 메달입니다.');
+                flag = true;
+              }
           });
-          
-          if(flag=!flag)this.appFirebaseService.save(result);
+          this.appFirebaseService.save(result);
         }
       }
     );
