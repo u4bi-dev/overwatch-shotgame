@@ -41,7 +41,7 @@
     </md-tab>
     <md-tab label="보유 메달">
       <md-grid-list cols="2" rowHeight="100px">
-        <md-grid-tile *ngFor="let medal of playerMedal" ><md-icon>{{medal.icon}}</md-icon> {{medal.name}}</md-grid-tile>
+        <md-grid-tile *ngFor="let medal of playerMedal" ><md-icon>{{medal.icon}}</md-icon> <span md-tooltip="{{medal.word}}">{{medal.name}}</span></md-grid-tile>
       </md-grid-list>
     </md-tab>
   </md-tab-group>
