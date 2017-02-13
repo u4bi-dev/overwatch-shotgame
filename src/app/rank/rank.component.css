@@ -2,7 +2,8 @@ h6{
     text-align: right;
 }
 span{
-    margin-left: 20%;
+    text-align: right;
+    width: 33.333%;
     color: #777777;
 }
 

@@ -19,10 +19,7 @@ export class RankComponent implements OnInit {
     this.appFirebaseService.firebase.database.list('record').subscribe(
       data =>{
         if(!flag){
-          let tick = 0;
           data.map( item => {
-            tick++;
-            if(tick > 9)return 0;
             self.playerRank.push({
               'name' : item.name,
               'email' : item.email,
@@ -31,6 +28,9 @@ export class RankComponent implements OnInit {
               'kill' : item.kill});
           });
           flag = true;
+          self.playerRank.sort(function (a, b) {
+            return a.time > b.time ? -1 : a.time < b.time ? 1 : 0;
+          });
         }
       }
     );
