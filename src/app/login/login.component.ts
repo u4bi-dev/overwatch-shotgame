@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
               this.appFirebaseService.updateProfile(userData.displayName, userData.email, userData.photoURL);
               this.snackbar.open(userData.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
           });
+          break;
       }
       case 1:{
           this.appFirebaseService.loginFacebook().then((data) =>{
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
               this.appFirebaseService.updateProfile(userData.displayName, userData.email, userData.photoURL);
               this.snackbar.open(userData.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
           });
+          break;
       }
     }
     this.dialog.closeAll();
