@@ -21,7 +21,7 @@
         "styles.css",
         "material2-app-theme.scss"
       ],
-      "scripts": [],
+      "scripts": ["lib/phaser.min.js"],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
