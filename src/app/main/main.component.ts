@@ -8,6 +8,8 @@ import { AppCoreService } from '../providers/app-core.service';
 })
 export class MainComponent implements OnInit {
 
+  content = '../../../../assets/images/MAIN_CONTENT_1.jpg';
+
   constructor(private appCoreService : AppCoreService){}
 
   ngOnInit() {
