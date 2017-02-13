@@ -18,13 +18,12 @@ import { MainComponent } from './main/main.component';
 import { RankComponent } from './rank/rank.component';
 import { ConfigComponent } from './config/config.component';
 import { LoginComponent } from './login/login.component';
+import { DetailInfoComponent } from './detail-info/detail-info.component';
 
 import { AppCoreService } from './providers/app-core.service';
 import { AppFirebaseService } from './providers/app-firebase.service';
 import { AppUserService } from './providers/app-user.service';
 import { IngameService } from './providers/ingame.service';
-import { DetailInfoComponent } from './detail-info/detail-info.component';
-
 
 @NgModule({
   declarations: [

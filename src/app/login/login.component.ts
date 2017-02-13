@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
               let userData = data.auth;
               this.appFirebaseService.updateProfile(userData.displayName, userData.email, userData.photoURL);
               this.snackbar.open(userData.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
-              this.appFirebaseService.giveMedal(userData.uid, '개척자', 'pets', '베타 테스트 일원에게 주어지는 메달입니다.');
           });
       }
       case 1:{
@@ -34,7 +33,6 @@ export class LoginComponent implements OnInit {
               let userData = data.auth;
               this.appFirebaseService.updateProfile(userData.displayName, userData.email, userData.photoURL);
               this.snackbar.open(userData.displayName+'님 반갑습니다. 로그인에 성공하였습니다.', '확인',{ duration: 3000});
-              this.appFirebaseService.giveMedal(userData.uid, '개척자', 'pets', '베타 테스트 일원에게 주어지는 메달입니다.');
           });
       }
     }

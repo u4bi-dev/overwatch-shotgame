@@ -221,16 +221,19 @@ export class IngameComponent implements OnInit {
   save(time : number, kill : number){
     let result = {};
     let flag : boolean;
-
+    
     this.appFirebaseService.playerRecord.subscribe(
       data =>{
-        data.map(item => {
-          if(item.$key == 'time' && item.$value < time) result['time'] = time;
-          if(item.$key == 'kill' && item.$value < kill) result['kill'] = kill;
-        });
-
-        if(flag=!flag)this.appFirebaseService.save(result);
-        
+        if(data.length < 4)this.appFirebaseService.save({'time': time, 'kill': kill, 'medal' : 0});
+        else {
+          data.map(item => {
+            if(item.$key == 'time' && item.$value < time) result['time'] = time;
+            if(item.$key == 'kill' && item.$value < kill) result['kill'] = kill;
+            if(item.$key == 'medal' && item.$value == 0)this.appFirebaseService.giveMedal(this.appFirebaseService.id, '개척자', 'pets', '베타 테스트 일원에게 주어지는 메달입니다.');
+          });
+          
+          if(flag=!flag)this.appFirebaseService.save(result);
+        }
       }
     );
   }

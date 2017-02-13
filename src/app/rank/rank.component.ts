@@ -15,20 +15,23 @@ export class RankComponent implements OnInit {
   
   ngOnInit() {
     let self = this;
-
+    let flag : boolean;
     this.appFirebaseService.firebase.database.list('record').subscribe(
       data =>{
-        let tick = 0;
-        data.map( item => {
-          tick++;
-          if(tick > 9)return 0;
-          self.playerRank.push({
-            'name' : item.name,
-            'email' : item.email,
-            'photo' : item.photo,
-            'time' : item.time,
-            'kill' : item.kill});
-        });
+        if(!flag){
+          let tick = 0;
+          data.map( item => {
+            tick++;
+            if(tick > 9)return 0;
+            self.playerRank.push({
+              'name' : item.name,
+              'email' : item.email,
+              'photo' : item.photo,
+              'time' : item.time,
+              'kill' : item.kill});
+          });
+          flag = true;
+        }
       }
     );
   }
