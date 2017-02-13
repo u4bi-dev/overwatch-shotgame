@@ -9,7 +9,7 @@ export class AppFirebaseService implements AppUserService{
   id : string; 
   name : string;
   email : string;
-  photo : string = '2';
+  photo : string;
   time : number = 0;
   kill : number = 0;
   
@@ -66,13 +66,30 @@ export class AppFirebaseService implements AppUserService{
     this.firebase.database.list('record').update(this.playerData.uid, data);
   }
 
-  giveMedal(name : string, icon : string, word : string){
-    let medal = {
-      'name': name,
-      'icon': icon,
-      'word': word
-    };
-    this.firebase.database.list('record/'+this.playerData.uid+'/medal').push(medal);
+  giveMedal(id : string, name : string, icon : string, word : string){
+    
+    let flag =false;
+    this.firebase.database.list('record/'+id).subscribe(
+      data =>{
+        data.map(item => {
+          if(item.$key == 'medal'){
+            let dol =/^[$]/;
+            Object.keys(item).filter(obj => !dol.test(obj)).map(obj =>{
+              if(item[obj].name == name)flag=true;
+            });
+
+            if(!flag){
+              let medal = { 'name': name, 'icon': icon, 'word': word };
+              let msg = '\n\n당신은 메달을 획득하였습니다.\n\n'+
+                        '메달 : '+medal.name+'\n\n설명 : '+medal.word+'\n';
+              alert(msg);
+              this.firebase.database.list('record/'+this.playerData.uid+'/medal').push(medal);
+            }
+
+          }
+        });
+      }
+    );
   }
 
 }
