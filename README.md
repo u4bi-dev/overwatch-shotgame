@@ -19,12 +19,12 @@
 - phaser-framework-ts
 - rxjs
 
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfOWdZNXJGaFlFQUU)
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfRHduVVltaF9Rb2s)
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfRTdRSDJ6VTVtXzg)
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfRGhncmJaUEY1aDA)
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfdjFJUThuZFVtdFk)
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfSUhjLTFzZGpHZTQ)
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfTmZIS1FKbkNPZTA)
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfZGs5UFR4bWd6TVU)
-![Alt text](http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfcTgxMnpVNEUyMms)
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfOWdZNXJGaFlFQUU">
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfRHduVVltaF9Rb2s">
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfRTdRSDJ6VTVtXzg">
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfRGhncmJaUEY1aDA">
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfdjFJUThuZFVtdFk">
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfSUhjLTFzZGpHZTQ">
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfTmZIS1FKbkNPZTA">
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfZGs5UFR4bWd6TVU">
+<img width="800px" src="http://drive.google.com/uc?export=view&id=0B3XkfYbZArSfcTgxMnpVNEUyMms">
